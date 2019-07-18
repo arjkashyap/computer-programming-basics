@@ -1,4 +1,4 @@
-// Singl
+
 //  Insertion and Deletion in linked list using user input
 
 #include<iostream>
@@ -65,17 +65,3 @@ int main(){
 	}
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
