@@ -1,4 +1,4 @@
-Implementing various data structures using c++
+Implementing various data structures using c and c++
 
 table of content:
 
