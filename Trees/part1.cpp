@@ -11,6 +11,7 @@ struct bstNode{
     bstNode* right;
 };
 
+
 // Create a new node
 // Function returns the address of the new node.
 bstNode* getNode(int a){
