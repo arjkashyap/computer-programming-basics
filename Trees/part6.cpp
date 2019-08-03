@@ -5,38 +5,39 @@ using namespace std;
 
 struct Node{
     int data;
-    struct Node* left;
-    struct Node* right;
+    struct Node *left;
+    struct Node *right;
 };
 
-Node* getNewNode(int a){
-    Node* newNode = new Node();
-    newNode -> data = a;
-    newNode -> left = newNode -> right = NULL;
-    return newNode;
-}
 
-Node* Insert(Node* root, int a){
+
+Node* Insert(Node *root, int a){
     if(root == NULL){
-       root = getNewNode(a);
+       root = new Node();
+       root -> data = a;
+       root -> left = root -> right = NULL;
     }
-    else if ( a <= root -> data)
+    if ( a <= root -> data)
         root -> left = Insert(root -> left, a);
-    else if ( a > root -> data )
+    if ( a > root -> data )
         root -> right = Insert(root -> right, a);
     return root;
 
 }
 
 // Function for preorder traversal
-void preOrder(struct Node* root){
+void preOrder(Node *root){
     if(root == NULL)
         return;
-    
+    cout<<"Pre Order traversal yields: "<<endl;
     cout<<root->data<<" ";
     preOrder(root -> left);
     preOrder(root -> right);
-    
+    cout<<"Pre Order traversal yields: "<<endl;
+    cout<<root->data<<" ";
+    preOrder(root -> left);
+    preOrder(root -> right);
+ 
 }
 
 int main(){
@@ -47,7 +48,6 @@ int main(){
     root = Insert(root, 15);
     root = Insert(root, 5);
     root = Insert(root, 21);
-    
     cout<<"here "<<endl;
     preOrder(root);
     return 0;
