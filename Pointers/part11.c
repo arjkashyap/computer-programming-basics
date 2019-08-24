@@ -38,5 +38,6 @@ int main()
     BubbleSort(A, n, compare);
     for(int i = 0; i < n; i ++){ printf("%d ", A[i]); }
     printf("\n");
+    free(A);
     return 0;
 }
