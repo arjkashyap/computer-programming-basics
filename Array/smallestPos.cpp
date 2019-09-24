@@ -15,7 +15,8 @@ int missingNumber(int arr[], int n){
     
     if( onePres ){
         while( i < n ){
-            if ( arr[i] + 1 != arr[i + 1] )
+
+           if ( arr[i] + 1 != arr[i + 1] && arr[i] != arr[i + 1])
                 return arr[i] + 1;
             i++;
         }
@@ -34,6 +35,8 @@ int main(){
         int arr[n];
         for( int i = 0; i < n; i++ ) cin >> arr[i];
         sort(arr, arr + n);
+     
+        cout << endl;
         cout << missingNumber(arr, n);
         cout << endl;
     }
