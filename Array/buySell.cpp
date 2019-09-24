@@ -11,15 +11,16 @@ void buySell(int arr[], int n){
         if(arr[i] < arr[i + 1]){
           
             b_idx = i;
+            i++;
             break;
         }
         i++;
     }
-    
+
     // corner case for last index remains
     while( i < n ){
         if( b_idx != -1 && arr[i] > arr[i-1] && arr[i] > arr[i+1] || (b_idx == -1 && i == n - 1 && arr[i] > arr[i - 1])){
-            cout << "(" << b_idx << " " << i << ")" << "";
+            cout << "(" << b_idx << " " << i << ")";
             b_idx = -1;         // Sold
         }
            
