@@ -6,27 +6,42 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int maxArr(int *a, int n){
-    int max = 0;
-    for( int i = 0; i < n; i++ ){
-        if( arr[i] > max )
-            max = arr[i];
-    }
-    return max;
-}
 
 int sumArr(int *a, int n){
     int sum = 0;
     for( int i = 0; i < n; i++ )
-        sum += arr[i];
+        sum += a[i];
     return sum;
 }
 
+int findMinPainters(int *a, int n, int k){
+    int painters = 1, sum = 0;
+    for( int i = 0; i < n; i ++ ){
+        sum += a[i];
+        if( sum > k){
+            sum = a[i];
+            painters++;
+        }
+    }
+    return painters;
+}
+
 int maxTime(int *a, int n, int k){
-    int l = maxArr(a, n);
+    sort(a, a+n);
+    int l = a[n-1];
     int h = sumArr(a, n);
     
-
+    while(l < h){
+        int mid = (l + h)/ 2;
+        
+        int painters = findMinPainters(a, n, mid);
+        
+        if( painters <= k  )
+            h = mid;
+        else
+            l = mid + 1;
+    }
+    return l;
 }
 
 int main(){
