@@ -10,12 +10,26 @@ int arrSum(int *arr, int n){
     return sum;
 }
 
+int findMinStudents(int arr[], int n, int k){
+    int sum = 0, count = 1;
+    for( int i = 0 ; i < n; i++ ){
+        sum += arr[i];
+        if( sum >  k){
+            sum = arr[i];
+            count++;
+        }
+    }
+
+}
+
 int maxPages(int arr[], int n, int s){
     sort(arr, arr + n);
     int h = arr[n-1];
     int l = arrSum(arr, n);
     while( l < h ){
         int mid = ( l + h ) / 2;
+
+        int minStudents = findMinStudents(arr, n, mid);
     }
 }
 
