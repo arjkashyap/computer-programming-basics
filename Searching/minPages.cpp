@@ -19,7 +19,7 @@ int findMinStudents(int arr[], int n, int k){
             count++;
         }
     }
-
+    return count;
 }
 
 int maxPages(int arr[], int n, int s){
@@ -30,7 +30,13 @@ int maxPages(int arr[], int n, int s){
         int mid = ( l + h ) / 2;
 
         int minStudents = findMinStudents(arr, n, mid);
+        if( s < minStudents )
+            h = mid;
+        else
+            l = mid + 1;
+
     }
+    return l
 }
 
 int main(){
