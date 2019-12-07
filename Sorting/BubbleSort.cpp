@@ -8,9 +8,18 @@ void Display( int *a, int n ){
     printf("\n");
 }
 
+void swap( int *a, int *b ){
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
 void BubbleSort( int *a, int n ){
     for( int k = 0; k < n - 1; k++ ){
-        for( int i = 0; i < n - k - 1; k++ )
+        for( int i = 0; i < n - k - 1; i++ ){
+            if( a[i] > a[i+1] )
+                swap( &a[i], &a[i+1] );
+        }
     }
 }
 
@@ -24,6 +33,7 @@ int main(){
 
     Display(arr, n);
     BubbleSort(arr, n);
+    printf("Sorted: ");
     Display(arr, n);
 
     return 0;
