@@ -4,17 +4,27 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int total = 0;
+long int total = 0;
+
+void Display(int *a, int n){
+    for( int i = 0; i < n; i++ )
+        printf("%d ", a[i]);
+    printf("\n");
+}
 
 void merge(int* A, int* B, int* C, int nA, int nB){
     int i = 0, j = 0, k = 0;
     while( i <  nA && j < nB){
-        if( A[i] < B[j] ) C[k++] = A[i++];
+        if( A[i] < B[j] || A[i] == B[j]) C[k++] = A[i++];
+
         else{
             C[k++] = B[j++];
             total += nA - i;
         }
+        
     }
+    while( i < nA ) C[k++] = A[i++];
+    while(j < nB) C[k++] = B[j++];
 }
 
 void countInversion(int *a, int n){
@@ -39,7 +49,7 @@ int main(){
         int arr[n];
         for( int i = 0; i < n; i++ ) scanf("%d", &arr[i]);
         countInversion(arr, n);
-        printf("%d\n", total);
+        printf("%li\n", total);
         total = 0;
     }
 
