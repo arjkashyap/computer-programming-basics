@@ -8,7 +8,7 @@ using namespace std;
 int findPivot(int *a, int l, int h){
     int i = l -1;
     int pivot = a[h];
-    for( int j = 0; j < h; j++ ){
+    for( int j = 0; j < h-1; j++ ){
         if( a[j] > pivot ){
             i++;
             swap(a[i], a[i]);
@@ -23,7 +23,7 @@ int kSmallest(int *a, int n, int k){
     while( l < h ){
         int pivot = findPivot(a, l, h);
         if( k-1 == pivot )
-            return a[pivot-1];
+            return pivot;
         else if( k-1 > pivot )
             l = pivot + 1;
         else
@@ -43,7 +43,10 @@ int main(){
         int a[n];
         for( int i = 0; i < n; i++ ) scanf("%d", &a[i]);
         scanf("%d", &k);
+        
         printf("%d\n", kSmallest(a, n, k));
+        for( int i = 0; i < n; i++ ) printf("%d ", a[i]);
+        printf("\n");
     }
 
     return 0;
