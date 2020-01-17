@@ -16,18 +16,17 @@ int main()
    }
     int i = 0, j = 0;
     while(i < r){
-        while(j < c && i < r){
+         while(i % 2 == 0 && j < c){
             cout << mat[i][j] << " ";
             j++;
-        }
-        j = c - 1;
-        i++;
-        while( j >= 0 && i < r ){
-            cout << mat[i][j] << " " ;
+         }
+         j = c - 1;
+        while(i % 2 != 0 && j >= 0){
+            cout << mat[i][j] << " ";
             j--;
         }
-        i++;
         j = 0;
+        i++;    
     }
     cout << "\n";
     return 0;
