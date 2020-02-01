@@ -1,3 +1,7 @@
+// Separate chaining technique in hashing allows to us to use a linked list at each hash slot to handle the problem of collisions.
+// That is, every slot of the hash table is a linked list, so whenever a collision occurs, the element can be appened as a node to 
+// the linked list at the slot.
+
 #include<bits/stdc++.h>
 #include<list>
 using namespace std;
