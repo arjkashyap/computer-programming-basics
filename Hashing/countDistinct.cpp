@@ -20,7 +20,6 @@ int main()
             cin >> input;
             us.insert(input);
         }
-        
         cout << us.size() << "\n";
     }
 
