@@ -1,15 +1,18 @@
-Implementing various data structures using c and c++
+<h3> Implementing various data structures using c and c++ </h3>
 
-table of content:
+<h4> Table of content: </h4>
 
-Data Structures:
-- Linked List
-- Stack
-- Queue
-- Array
-- Binary Tree
-- Heap
-- Hashing
-- Graph
-- Matrix
-- Misc
+<p> Data Structures: </p>
+<ul>
+  <li> Bitwise Algorithms </li>
+  <li>Linked List </li>
+  <li>Stack </li>
+  <li>Queue </li>
+  <li>Array </li>
+  <li>Binary Tree </li>
+  <li>Heap </li>
+  <li>Hashing </li>
+  <li>Graph </li>
+  <li>Matrix </li>
+  <li>Misc </li>
+</ul>
