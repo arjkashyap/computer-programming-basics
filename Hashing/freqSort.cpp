@@ -1,42 +1,26 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+bool comparePair(pair<int, int>& a, pair<int, int>& b)
+{
+    if(a.second == b.second) return a.first < b.first;
+
+    return a.second > b.second;
+}
+
 void sortByFreq(int arr[], int n)
 {
     unordered_map<int, int> freqMap;
-    unordered_map<int, vector<int>> helperMap;
-    vector<int> freq;
+    vector<pair<int, int>> v;
     for(int i = 0; i < n; i++)
         freqMap[arr[i]]++;
-    for(auto x : freqMap)
-        freq.push_back(x.second);
-    sort(freq.begin(), freq.end(), greater<int>());
-    for(auto i = freq.begin(); i < freq.end(); i++){
-        if(freq[i] == freq[i+1])
-            freq.erase(i);
-    }
-    for(auto x = freq.begin(); x != freq.end(); x++){
-        for(auto y : freqMap){
-            if(*x == y.second)
-                helperMap[*x].push_back(y.first);
-        }
-    }
-   // for(auto x : helperMap){
-   //     cout << x.first << " --> {";
-   //     sort(x.second.begin(), x.second.end());
-   //     for(auto y = x.second.begin(); y < x.second.end(); y++)
-   //         cout << *y << " ";
-   //     cout << "}" << endl;
-   // }
-   // cout << "\n";
-    for(auto x = freq.begin(); x < freq.end(); x++){
-        int f = *x;
-        if(*x != *(x+1)){
-            vector<int> v = helperMap[*x];
-            for(int i = 0; i < v.size(); i++)
-                if(v[i] != v[i+1])
-                    cout << v[i] << " ";
-        }
+    copy(freqMap.begin(), freqMap.end(), back_inserter(v));
+
+    sort(v.begin(), v.end(), comparePair);
+
+    for(int x = 0; x < v.size(); x++){
+        for(int y = 0; y < v[x].second; y++)
+            cout << v[x].first << " ";
     }
     cout << "\n";
 }
