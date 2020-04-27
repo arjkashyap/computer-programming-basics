@@ -12,6 +12,7 @@
   <li>Binary Tree </li>
   <li>Heap </li>
   <li>Hashing </li>
+  <li>String</li>
   <li>Graph </li>
   <li>Matrix </li>
   <li>Misc </li>
