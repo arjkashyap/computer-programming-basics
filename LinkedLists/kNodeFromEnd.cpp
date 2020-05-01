@@ -1,3 +1,4 @@
+// The task is to find the kth node from the end of the linked list in a single traversal
 
 #include <bits/stdc++.h>
 
@@ -42,6 +43,29 @@ void Display(Node *head)
     std::cout << "\n";
 }
 
+// Function returns the data of kth node from the end of the linke list
+int getNthFromLast(Node *head, int n)
+{
+    Node *start = head;
+    Node *end = head;
+    if( !(head) )
+        return -1;
+    int index = 0;
+    while(index < n){
+        if( !(end) )
+            return -1;
+        end = end -> next;
+        index++;
+    }
+    while( end ){
+        start = start -> next;
+        end = end -> next;
+    }
+    return start -> data;
+}
+
+
+
 int main()
 {
     std::ios_base::sync_with_stdio(false);
@@ -50,8 +74,8 @@ int main()
     while (t--)
     {
         Node *head = nullptr;
-        int n;
-        std::cin >> n;
+        int n, k;
+        std::cin >> n >> k;
         for (int i = 0; i < n; i++)
         {
             int x;
@@ -59,7 +83,8 @@ int main()
             head = Insert(head, x);
 
         }
-        Display(head);
+        std:: cout << getNthFromLast(head, k) << "\n";
+
     }
 
     return 0;
