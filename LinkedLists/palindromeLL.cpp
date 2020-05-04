@@ -1,9 +1,8 @@
-// Reverse the linked list in a recursive manner
+// Check if the given linked list is palindrome or not
 
 #include <bits/stdc++.h>
 
 // Linked list node
-
 struct Node
 {
 
@@ -40,15 +39,37 @@ void Display(Node *head)
         std::cout << head->data << " ";
         head = head->next;
     }
+    std::cout << "\n";
 }
 
-// Function to reverse the linked list in a Recursive approach
-Node* Reverse(Node* head)
+bool isPalindrome(Node* head)
 {
-    if( head -> next == nullptr )
-        return head;
-    
-    Reverse( head -> next );
+    int n = 0;
+    std::stack<int> s;
+    Node *ptr = head;
+    while(ptr != nullptr)
+    {
+        ptr = ptr -> next;
+        n++;
+    }
+    ptr = head;
+    int i = 0;
+    int mid = n / 2;
+    while(i < mid ){
+        s.push(ptr -> data);
+        ptr = ptr -> next;
+        i++;
+    }
+
+    ptr = (n % 2) == 0 ? ptr : ptr ->  next;
+
+    while(ptr != nullptr){
+        if( ptr -> data != s.top() )
+            return false;
+        s.pop();
+        ptr = ptr -> next;
+    }
+    return true;
 }
 
 int main()
@@ -65,10 +86,10 @@ int main()
         {
             int x;
             std::cin >> x;
-            head = Insert(x);
+            head = Insert(head, x);
 
         }
-        Display(head);
+        std::cout << isPalindrome(head) << "\n";
     }
 
     return 0;
