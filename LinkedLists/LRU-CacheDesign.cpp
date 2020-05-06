@@ -10,49 +10,96 @@ Note: The most recently used is kept at left position
 
 // { Driver Code Starts
 
-
 #include <bits/stdc++.h>
+#include <unordered_map>
 using namespace std;
 
 // Doubly Linked List Node
-class Node{
-    private:
-        int data;
-        Node* next;
-        Node* prev;
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node *prev;
 
-    public:
-        Node(int x)
-        {
-            this.data = x;
-            this.next = nullptr;
-            this.prev = nullptr;
-        }
-}
+public:
+    Node(int x)
+    {
+        this->data = x;
+        this->next = nullptr;
+        this->prev = nullptr;
+    }
+};
 
 // design the class:
 class LRUCache
 {
 private:
-    Node* head_ref = nullptr;
+    Node *head_ref = nullptr;
+    Node *tail_ref = nullptr;
+    unordered_map<key, Node *> map;
+    int space_avail;
+
 public:
+    // Constructor takes the param-> cache capacity
     LRUCache(int cap)
     {
         // constructor for cache
+        space_avail = cap;
     }
 
+    // this function should return value corresponding to key
     static int get(int key)
     {
-        // this function should return value corresponding to key
+        if (map.find(key) == map.end())
+            return -1;
+        Node *ptr = map[key];
+        int res = ptr->data;
+        ptr->prev->next = ptr->next;
+        ptr->next->prev = (ptr->next != nullptr) ? ptr->prev : nullptr;
+        ptr->prev = nullptr;
+        ptr->next = head_ref;
+        head_ref->prev = ptr;
+        head_ref = ptr;
+        return res;
     }
 
+    // storing key, value pair
     static void set(int key, int value)
     {
-        // storing key, value pair
+
+        Node *newNode = Node(value);
+        if (head_ref == nullptr)
+        {
+            map[key] = newNode;
+            head_ref = newNode;
+            tail_ref = newNode;
+            space_avail--;
+            return;
+        }
+        if (space_avail > 0)
+        {
+            newNode->next = head_ref;
+            head_ref->prev = newNode;
+            head_ref = newNode;
+            map[key] = newNode;
+            space_avail--;
+        }
+        else if (space_avail == 0)
+        {
+            Node *tmp = tail_ref;
+            tail_ref = tail_ref->prev;
+            free(tmp);
+            newNode->next = head_ref;
+            head_ref->prev = newNode;
+            head_ref = newNode;
+            map[key] = newNode;
+        }
     }
 }
 
-int main()
+int
+main()
 {
     int t;
     cin >> t;
@@ -88,4 +135,4 @@ int main()
     }
     return 0;
 }
-  // } Driver Code Ends
+// } Driver Code Ends
