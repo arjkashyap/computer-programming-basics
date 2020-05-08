@@ -44,60 +44,58 @@ void Display(Node *head)
     std::cout << "\n";
 }
 
-Node* findMiddleNode(Node* head)
-{
-    Node *slow = head;
-    Node *fast = head;
-    while( fast && fast -> next ){
-        slow = slow -> next;
-        fast = fast -> next -> next;
-    }
-
-    return slow;
-}
-
-Node* merge(Node* h1, Node* h2)
-{
-    std::cout << "Lists in the merge function \n";
-    Display(h1);
-    Display(h2);
-    Node *head = nullptr;
-    if( h1 -> data < h2 -> data ){
-        head = h1;
-        h1 = h1 -> next;
-    } else{
-        head = h2;
-        h2 = h2 -> next;
-    }
-    Node *tail = head;
-    while( h1 && h2 ){
-        if( h1 -> data < h2 -> data ){
-            tail -> next = h1;
-            tail = h1;
-            h1 = h1 -> next;
-        } else{
-            tail -> next = h2;
-            tail = h2;
-            h2 = h2 -> next;
+void splitList(Node* source, Node** frontRef,
+               Node** backRef) {
+    struct Node* fast;
+    struct Node* slow;
+    if (source == NULL || source->next == NULL) {
+        *frontRef = source;
+        *backRef = NULL;
+    } else {
+        slow = source;
+        fast = source->next;
+        while (fast != NULL) {
+            fast = fast->next;
+            if (fast != NULL) {
+                slow = slow->next;
+                fast = fast->next;
+            }
         }
+        *frontRef = source;
+        *backRef = slow->next;
+        slow->next = NULL;
     }
-
-    return head;
 }
 
-Node* mergeSort(Node* head) 
-{
-    std::cout << "List in merge sort fun \n";
-    Display(head);
-    Node *mid = findMiddleNode(head);
-    std::cout << "Mid node is: " << mid -> data << "\n";
-    Node *h1 = head;
-    Node *h2 = mid -> next;
-    mid-> next = nullptr;
-    mergeSort(h1);
-    mergeSort(h2);
-    return merge(h1, h2);
+Node* mergeList(struct Node* a, struct Node* b) {
+    struct Node* result = NULL;
+    if (a == NULL)
+        return (b);
+    else if (b == NULL)
+        return (a);
+    if (a->data <= b->data) {
+        result = a;
+        result->next = mergeList(a->next, b);
+    } else {
+        result = b;
+        result->next = mergeList(a, b->next);
+    }
+    return (result);
 }
+
+Node* mergeSort(Node *head) {
+    
+    struct Node* a;
+    struct Node* b;
+    if (head == NULL || head->next == NULL) return head;
+    splitList(head, &a, &b);
+    a = mergeSort(a);
+    b = mergeSort(b);
+    return mergeList(a, b);
+}
+
+
+
 
 int main()
 {
