@@ -38,7 +38,7 @@ bstNode* insert(bstNode* root, int a){
 int main(){
     // Create an empty tree
     bstNode* root = NULL;
-    
+
     // Inserting nodes
     root = insert(root, 12);
     root = insert(root, 1);
