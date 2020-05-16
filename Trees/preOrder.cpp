@@ -29,15 +29,9 @@ Node* Insert(Node *root, int a){
 void preOrder(Node *root){
     if(root == NULL)
         return;
-    cout<<"Pre Order traversal yields: "<<endl;
     cout<<root->data<<" ";
     preOrder(root -> left);
     preOrder(root -> right);
-    cout<<"Pre Order traversal yields: "<<endl;
-    cout<<root->data<<" ";
-    preOrder(root -> left);
-    preOrder(root -> right);
- 
 }
 
 int main(){
