@@ -1,64 +1,42 @@
-// Given a graph and source s, print the bfs
+// DFS of a graph
 
 #include<bits/stdc++.h>
+using namespace std;
 
-typedef std::vector<int> graph;
-
-void addEdge(graph *adj, int u, int v)
+void dfs(int s, vector<int> g[], bool vis[])
 {
-    adj[u].push_back(v);
-    adj[v].push_back(u);        // The graph is undirected
-}
-
-void printGraph(graph *adj, int v)
-{
-    for(int i = 0; i < v; i++)
-    {
-        std::cout << i << " -> ";
-        for(auto x : adj[i])
-            std::cout << x << " ";
-    std::cout << "\n";
+    vis[s] = true;
+    cout << s << " ";
+    
+    for(auto v : g[s]){
+        if(!vis[v])
+            dfs(v, g, vis);
     }
+
 }
 
-// Function takes vertex list, total nodes and source node
-// prints breadth first traversal of a graph
-void bfsGraph(std::vector<int> g[], int n, int s)
+int main()
 {
-    if(n == 0)
-        return;
-    std::vector<bool> visited;
-    std::queue<int> q;
-    for(int i = 0; i < n; i++)
-        visited[i] = false;
-    q.push(s);
-    visited[s] = true;
-    while(!q.empty())
+    int T;
+    cin>>T;
+    while(T--)
     {
-        int u = q.front();
-        q.pop();
-        std::cout << u << " ";
-        for(int v : g[u] )
+
+        int N, E;
+        cin>>N>>E;
+        vector<int> g[N];
+        bool vis[N];
+        memset(vis, false, sizeof(vis));
+        for(int i=0;i<E;i++)
         {
-            if(!visited[v]){
-                q.push(v);
-                visited[v] = true;
-            }
+            int u,v;
+            cin>>u>>v;
+            g[u].push_back(v);
+            g[v].push_back(u);
         }
+
+        dfs(0,g,vis);
+        cout<<endl;
+
     }
-    std::cout << "\n";
-}
-
-int main(){
-    int v = 4;      // Number of vertices
-
-    // We create an array of vectors
-    graph adj[v];
-    addEdge(adj, 0, 1);
-    addEdge(adj, 0, 2);
-    addEdge(adj, 1, 2);
-    addEdge(adj, 1, 3);
-
-    bfsGraph(adj, v, 0);
-    return 0;
 }
