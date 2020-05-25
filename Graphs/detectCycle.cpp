@@ -38,7 +38,7 @@ bool detectCycle(vector<int> *adj, int s, bool *vis, int par = -1)
 }
 
 
-bool isCyclic(vector<int> adj[], int V)
+bool isCyclic(std::vector<int> adj[], int V)
 {
    bool vis[V];
    for(int i = 0; i < V; i++)
