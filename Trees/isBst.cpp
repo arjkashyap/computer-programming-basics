@@ -31,9 +31,9 @@ bool bstUtil(Node* root, int min, int max)
 {
     if(!root)
         return true;
-    if(root -> data < min || root -> data >= max) return false;
+    if(root -> data < min || root -> data > max) return false;
     
-    return bstUtil(root -> left, min, root -> data) && bstUtil(root -> right, root -> data, max);
+    return bstUtil(root -> left, min, root -> data - 1) && bstUtil(root -> right, root -> data + 1, max);
 }
 
 // return true if the given tree is a BST, else return false
