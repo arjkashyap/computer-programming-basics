@@ -130,7 +130,6 @@ int main()
     root = insert(root, 20);
     root = insert(root, 30);
     root = insert(root, 40);
-    root = insert(root, 50);
     root = insert(root, 25);
     inorder(root); 
 
