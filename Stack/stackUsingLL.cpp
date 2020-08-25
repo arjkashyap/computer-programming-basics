@@ -1,77 +1,59 @@
-// Implementing Stack using linked List
+// Implementation of Stack using Linked Lists
+// Here head nodes becomes top
 
-// { Driver Code Starts
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-struct StackNode {
+struct Node {
     int data;
-    StackNode *next;
-    StackNode(int a) {
-        data = a;
-        next = NULL;
-    }
+    struct Node* next;
 };
 
-class MyStack {
-  private:
-    StackNode *top;
+struct Node* top;	
 
-  public:
-    void push(int);
-    int pop();
-    MyStack() { top = NULL; }
-};
-
-int main() {
-    int T;
-    cin >> T;
-    while (T--) {
-        MyStack *sq = new MyStack();
-
-        int Q;
-        cin >> Q;
-        while (Q--) {
-            int QueryType = 0;
-            cin >> QueryType;
-            if (QueryType == 1) {
-                int a;
-                cin >> a;
-                sq->push(a);
-            } else if (QueryType == 2) {
-                cout << sq->pop() << " ";
-            }
-        }
-        cout << endl;
-    }
-}
-// } Driver Code Ends
-
-
-void MyStack ::push(int x) 
-{
-    // Empty stack
-    if(top == nullptr)
-    {
-        top = new StackNode(x);
-        return;
-    }
-    StackNode* newNode = new StackNode(x);
-    newNode -> next = top;
-    top = newNode;
-        
+// Inserting element at the top
+void push(int a){
+	struct Node* newNode = new Node;	// Create a new node
+	newNode -> data = a;
+	newNode -> next = top;
+	top = newNode;
 }
 
-/* The method pop which return the element
-  poped out of the stack*/
-int MyStack ::pop() 
-{
-    if(top == nullptr)
-        return -1;
-    StackNode* tmp = top;
-    top = top -> next;
-    return tmp -> data;
+// Delete element from the top
+void pop(){
+	if(top == NULL){
+		cout<<"Underflow"<<endl;
+		return;
+	}
+	struct Node* temp = top;
+	top = top -> next;
+	delete temp;
 }
+
+// Display Elements
+void display(){
+	if(top == NULL){
+		cout<<"List is empty."<<endl;
+		return;
+	}
+	struct Node* ptr = top;
+	while(ptr != NULL){
+		cout<<ptr->data<<" ";
+		ptr = ptr->next;
+	}	
+	cout<<endl;
+}
+
+int main(){
+	display();
+	push(4);push(1);push(21);push(7);push(45);
+	display();
+	pop();pop();
+	display();
+	return 0;
+}
+
+
 
 
 
