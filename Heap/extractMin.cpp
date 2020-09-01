@@ -1,4 +1,4 @@
-// Implementing various methods of Heap Data Structure
+// Extract and pop the minimum element from the heap
 
 #include<iostream>
 #include<cmath>
@@ -20,10 +20,39 @@ class MinHeap
         int parentIndex(int);
         int leftChildIndex(int);
         int rightChildIndex(int);
+        int extractMin();
         void insert(int);
         void heapify(int); 
         void display();
 };
+
+// Function to extract and remove the minimum element
+int MinHeap::extractMin()
+{   
+    int i = 0;
+    int min = arr[i];
+    std::swap(arr[i], arr[size - 1]);
+    size--;
+    heapify(i);
+    return min;
+}
+
+// Function to heapify the given index
+void MinHeap::heapify(int i)
+{
+    int smallest = i;
+    int lt = leftChildIndex(i), rt = rightChildIndex(i);
+
+    if(lt && arr[lt] < arr[i])
+        smallest = lt;
+    if(rt && arr[rt] < arr[i])
+        smallest = rt;
+    if(smallest != i)
+    {
+        std::swap(arr[smallest], arr[i]);
+        heapify(smallest);
+    }
+}
 
 int MinHeap::parentIndex(int ci)
 {
@@ -75,7 +104,7 @@ void MinHeap::display()
         int i = q.front();
         q.pop();
         std::cout << arr[i] << " ";
-        if(leftChildIndex(i) != 0)  q.push(leftChildIndex(i));
+        if(leftChildIndex(i) != 0) q.push(leftChildIndex(i));
         if(rightChildIndex(i) != 0) q.push(rightChildIndex(i));
     }
 }
@@ -92,6 +121,8 @@ int main()
     mh.insert(60);
 
     mh.display();
-
+    int m = mh.extractMin();
+    std::cout << " Min : " << m << std::endl;
+    mh.display();
     return 0;
 }

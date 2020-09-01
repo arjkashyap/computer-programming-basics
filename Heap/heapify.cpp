@@ -1,4 +1,7 @@
-// Implementing various methods of Heap Data Structure
+// Implementation of heapify operation
+// And extract minimum
+// Heapify is performed on a given node which we think 
+// Might be violating the properties on min heap
 
 #include<iostream>
 #include<cmath>
@@ -25,6 +28,23 @@ class MinHeap
         void display();
 };
 
+// Function to heapify the given index
+void MinHeap::heapify(int i)
+{
+    int smallest = i;
+    int lt = leftChildIndex(i), rt = rightChildIndex(i);
+
+    if(lt && arr[lt] < arr[i])
+        smallest = lt;
+    if(rt && arr[rt] < arr[i])
+        smallest = rt;
+    if(smallest != i)
+    {
+        std::swap(arr[smallest], arr[i]);
+        heapify(smallest);
+    }
+}
+
 int MinHeap::parentIndex(int ci)
 {
     if(ci == 0)
@@ -35,7 +55,7 @@ int MinHeap::parentIndex(int ci)
 int MinHeap::leftChildIndex(int pi)
 {
     int lt = (2*pi + 1);
-    if(lt >= size) return 0;
+    if(lt >= cap) return 0;
     
     return lt;
 }
@@ -43,7 +63,7 @@ int MinHeap::leftChildIndex(int pi)
 int MinHeap::rightChildIndex(int pi)
 {
     int rt = (2*pi + 2);
-    if(rt >= size) return 0;
+    if(rt >= cap) return 0;
 
     return rt;
 }
