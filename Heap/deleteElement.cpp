@@ -83,7 +83,7 @@ ll MinHeap::getMin()
 void MinHeap::remove(ll x)
 {
     ll k = -1;
-    ll inf = 1000000000;
+    ll inf = -1000000000;
     for(ll i = 0; i < size; i++)
     {
         if(arr[i] == x)
