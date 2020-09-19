@@ -13,33 +13,16 @@ Feel free to fork and contribute.
 
 ### 1. [Arrays](/Array.md)
 
-- Introduction
-- Insertion & Deletion
-- Rotation, Reversing
-- Sliding Window Technique
-- Prefix Sum Technique
-
 ### 2. [Bitwise Algorithms](/Bitwise.md)
 
 ### 3. [Linked List](/LinkedList.md)
 
 ### 4. [Stack](/Stack.md)
 
-### 5. [Arrays](/Array.md)
+### 5. [Queue](/Array.md)
 
-### 6. [Arrays](/Array.md)
+### 6. [String](/Array.md)
 
-### 7. [Arrays](/Array.md)
+### 7. [Binary Tree](/Array.md)
 
-### 8. [Arrays](/Array.md)
-
-  <li>Stack </li>
-  <li>Queue </li>
-  <li>Array </li>
-  <li>Binary Tree </li>
-  <li>Heap </li>
-  <li>Hashing </li>
-  <li>String</li>
-  <li>Graph </li>
-  <li>Matrix </li>
-  <li>Misc </li>
+### 8. [Matrix](/Array.md)
