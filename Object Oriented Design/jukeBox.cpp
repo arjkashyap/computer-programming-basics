@@ -33,10 +33,52 @@ private:
 public:
 
 	// constructors:
+	CDPlayer();
+	CDPlayer(PlayList pl, CD cd);
+	CDPlayer(CD cd);
 	
-
 	void DisplayPlaylist(){};
 	void getCd();
 	void setCD();
-	void setPlaylist();
+	void setPlaylist(PlayList pl);
+};
+
+
+class PlayList
+{
+private:
+	queue<Song> playlist;
+	int PlayListID;
+	
+	
+public: 
+	PlayList(queue<Song> playlist);
+	
+	
+	Song getNextSong();
+	void AddSong(Song song){// add this song to playlist queue}
+	void RemoveSong(Song song) {}
+};
+
+class CDPlayer
+{
+	// artist, release, name, id ..
+};
+
+class Song 
+{
+	// artist, Album, . . . name, id
+};
+
+
+class User
+{
+private:
+	int UserId;
+	.
+	.
+	.
+	.
+	.
+	
 };
