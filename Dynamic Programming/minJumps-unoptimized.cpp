@@ -21,6 +21,10 @@ using namespace std;
 	
         0  1  2  3  4  5
 		3  4  2  1  2  1
+		
+		    i-arr[i]
+	   3    4   2   1   2   1
+	   0   IM  IM  IM  IM  IM 
 
 */
 

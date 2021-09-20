@@ -2,7 +2,7 @@
 
 using namespace std;
 
-*
+/*
 	MINIMUM JUMPS TO REACH END
 	
 	Given an array arr[i] where i>=0 to n
@@ -22,31 +22,34 @@ using namespace std;
 		3  4  2  1  2  1
 		
 		    i-arr[i]
+			
+	                        i
 	   3    4   2   1   2   1
-	   0   IM  IM  IM  IM  IM 
+	   0   1    1   1    2   1 
+	   
+	   4 + 1 >=5
+	   
+	   for i <- 1 to n-1:
+		  for j <- 0 to i: 
+			if(arr[j] + j >= i && arr[j] != INT_MAX)
+				dp[i] = min(dp[i], dp[j] + 1)
+				
+	   return dp[n]
 
 */
 
-int minJumps(int* arr, int n)
-{
+int minimumJumps(int arr[], int n){
 	
-	if(n == 1)
-		return 0;
+	int dp[n+1] = {INT_MAX};
+	dp[0] = 0;
 	
-	int res = INT_MAX;
-	// for the nth cell, find prev cells that can reach it
-	for(int i = 0; i <= n-2; i++){
-		
-		// check if the ith cell can reach nth cell
-		if(arr[i] + i >= n-1){
-			int sub_res = minJumps(arr, i+1);
-			
-			if(sub_res != INT_MAX)
-				res = min(res, sub_res + 1);
-			
+	for(int i = 0; i <= n; i++){
+		for(int j = 0; j < i; j++){
+			if(arr[j] + j >= i && arr[j] != INT_MAX)
+				dp[i] = min(dp[i], dp[j] + 1);
 		}
 	}
-	return res;
+	return dp[n];
 }
 
 int main()
@@ -59,7 +62,7 @@ int main()
 		int arr[n];
 		for(int i = 0; i < n; i++)
 			cin >> arr[i];
-		int res = minJumps(arr, n);
+		int res = minimumJumps(arr, n);
 		cout << res << endl;
 
 	}

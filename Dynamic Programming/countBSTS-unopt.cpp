@@ -33,7 +33,20 @@ using namespace std;
 
 int countBST(int n)
 {
+	int dp[n+1];
+	dp[0] = 0;
 	
+	// setting i as key from 0 to n
+	for(int i = 1; i <= n; i++){
+		d[i] = 0;
+		
+		// if i is the key, in the left and right subtree, 
+		// we want to set j as the key count the bst possible 
+		for(int j = 0; j < i; j++){
+			d[i] += d[j] * d[i - j - 1];
+		}
+	}
+	return d[n];
 }
 
 int main()
