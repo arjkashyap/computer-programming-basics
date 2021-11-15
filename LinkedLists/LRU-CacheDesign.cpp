@@ -22,7 +22,6 @@ public:
     Node *next;
     Node *prev;
 
-public:
     Node(int x)
     {
         this->data = x;
